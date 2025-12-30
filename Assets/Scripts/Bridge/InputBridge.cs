@@ -1,6 +1,7 @@
 using UnityEngine;
 using Unity.Entities;
 using Unity.Mathematics;
+using System.Collections;
 
 public class InputBridge : MonoBehaviour
 {
@@ -8,35 +9,37 @@ public class InputBridge : MonoBehaviour
 
     private EntityManager _entityManager;
     private Entity _playerEntity;
-
-    void Awake()
+     
+    IEnumerator Start()
     {
-        _entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
-    }
+        _entityManager = World.DefaultGameObjectInjectionWorld.EntityManager; 
 
-    void Update()
-    {
-        // Если игрок ещё не найден или был удалён, ищем его
-        if (_playerEntity == Entity.Null || !_entityManager.Exists(_playerEntity))
+        while (true)
         {
             var query = _entityManager.CreateEntityQuery(
                 ComponentType.ReadOnly<PlayerComponent>(),
                 ComponentType.ReadWrite<InputComponent>()
             );
 
-            if (query.CalculateEntityCount() == 0)
-                return; // игрок ещё не создан
+            if (query.CalculateEntityCount() > 0)
+            {
+                _playerEntity = query.GetSingletonEntity();
+                break; // игрок найден, выходим из цикла
+            }
 
-            _playerEntity = query.GetSingletonEntity();
+            yield return null; // ждём следующий кадр
         }
+    }
 
-        // Получаем движение с джойстика
-        float2 move = new float2(
-            Joystick.Horizontal,
-            Joystick.Vertical
-        );
+    void Update()
+    { 
+        if (_playerEntity == Entity.Null || !_entityManager.Exists(_playerEntity))
+            return;
 
-        // Обновляем ECS компонент
+        // Читаем движение с джойстика
+        float2 move = new float2(Joystick.Horizontal, Joystick.Vertical);
+
+        // Обновляем ECS компонент игрока
         var input = _entityManager.GetComponentData<InputComponent>(_playerEntity);
         input.Move = move;
         _entityManager.SetComponentData(_playerEntity, input);

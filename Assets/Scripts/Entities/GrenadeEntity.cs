@@ -18,7 +18,7 @@ public class GrenadeEntity : MonoBehaviour
                 Damage = authoring.Damage,
                 Speed = authoring.Speed,
                 ArcHeight = authoring.ArcHeight,
-                ExplosionRadius = authoring.ExplosionRadius
+                ExplosionRadius = authoring.ExplosionRadius 
             });
         }
     }

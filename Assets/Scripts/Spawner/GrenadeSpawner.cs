@@ -4,7 +4,7 @@ using UnityEngine;
 public class GrenadeSpawner : MonoBehaviour
 {
     public GameObject GrenadePrefab;
-    public float Firetick = 2f;
+    public float Firetick = 1f;
 
     class Baker : Baker<GrenadeSpawner>
     {
@@ -16,6 +16,7 @@ public class GrenadeSpawner : MonoBehaviour
             {
                 GrenadePrefab = GetEntity(authoring.GrenadePrefab, TransformUsageFlags.Dynamic),
                 Firetick = authoring.Firetick,
+                GrenadesPerShot = 1,
                 Delay = 0f
             });
         }

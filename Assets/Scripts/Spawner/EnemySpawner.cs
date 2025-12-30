@@ -4,7 +4,7 @@ using Unity.Entities;
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject EnemyPrefab;
-    public float SpawnInterval = 2f;
+    public float SpawnInterval = 1f;
 
     class Baker : Baker<EnemySpawner>
     {
@@ -16,7 +16,8 @@ public class EnemySpawner : MonoBehaviour
             {
                 EnemyPrefab = GetEntity(authoring.EnemyPrefab, TransformUsageFlags.Dynamic),
                 SpawnInterval = authoring.SpawnInterval,
-                Timer = 0f
+                Timer = 0f,
+                MaxEnemiesAlive = 100
             });
         }
     }
