@@ -1,4 +1,4 @@
-﻿using Unity.Entities;
+﻿/*using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
 using Unity.Collections;
@@ -112,4 +112,4 @@ public partial struct PlayerFireSystem : ISystem
 
         enemies.Dispose();
     }
-} 
+} */
