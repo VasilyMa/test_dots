@@ -5,6 +5,8 @@ public class EnemySpawner : MonoBehaviour
 {
     public GameObject EnemyPrefab;
     public float SpawnInterval = 1f;
+    public int MaxSpawnCount = 10;
+    public int EnemyCountPerSpawn = 1;
 
     class Baker : Baker<EnemySpawner>
     {
@@ -16,8 +18,9 @@ public class EnemySpawner : MonoBehaviour
             {
                 EnemyPrefab = GetEntity(authoring.EnemyPrefab, TransformUsageFlags.Dynamic),
                 SpawnInterval = authoring.SpawnInterval,
-                Timer = 0f,
-                MaxEnemiesAlive = 100
+                MaxEnemiesAlive = authoring.MaxSpawnCount,
+                EnemyPerSpawn = authoring.EnemyCountPerSpawn,
+                Timer = 0f
             });
         }
     }

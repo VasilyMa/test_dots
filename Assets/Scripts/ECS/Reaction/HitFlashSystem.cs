@@ -16,7 +16,7 @@ public partial struct HitFlashSystem : ISystem
         {
             flash.ValueRW.Timer += dt;
              
-            color.ValueRW.Value = new float4(1f, 1f, 1f, 1f);
+            color.ValueRW.Value = new float4(1f, 1f, 1f, 1f); 
 
             if (flash.ValueRW.Timer >= flash.ValueRW.Duration)
             {

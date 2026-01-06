@@ -43,19 +43,22 @@ public partial struct EnemySpawnSystem : ISystem
 
             spawner.ValueRW.Timer = 0f;
 
-            // Спавн врага
-            Entity enemy = em.Instantiate(spawner.ValueRO.EnemyPrefab);
+            for (global::System.Int32 i = 0; i < spawner.ValueRO.EnemyPerSpawn; i++)
+            { 
+                // Спавн врага
+                Entity enemy = em.Instantiate(spawner.ValueRO.EnemyPrefab);
 
-            // Случайное смещение вокруг игрока
-            float3 offset = new float3(
-                _random.NextFloat(-5f, 5f),
-                0f,
-                _random.NextFloat(-5f, 5f)
-            );
+                // Случайное смещение вокруг игрока
+                float3 offset = new float3(
+                    _random.NextFloat(-5f, 5f),
+                    0f,
+                    _random.NextFloat(-5f, 5f)
+                );
 
-            em.SetComponentData(enemy, LocalTransform.FromPosition(playerTransform.Position + offset));
+                em.SetComponentData(enemy, LocalTransform.FromPosition(playerTransform.Position + offset));
 
-            aliveEnemies++;
+                aliveEnemies++;
+            } 
         }
     }
 }

@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GrenadePrefab: {fileID: 1972295804630617363, guid: b445fbd9cf913844b94646777edcc557, type: 3}
-  Firetick: 2
+  Firetick: 0.5
 --- !u!4 &91748047
 Transform:
   m_ObjectHideFlags: 0
@@ -261,7 +261,7 @@ Transform:
   m_GameObject: {fileID: 1143968172}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0763946, y: -0.3509201, z: 0.42378098}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -297,7 +297,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 1233885363297059956, guid: 61af409c01575d840b2941a206821e7c, type: 3}
-  Firetick: 0.2
+  Firetick: 0.1
 --- !u!4 &1319128185
 Transform:
   m_ObjectHideFlags: 0
@@ -343,7 +343,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyPrefab: {fileID: 391890375427476764, guid: 775619fbca22e0a46a7cb83fbaf0ed26, type: 3}
-  SpawnInterval: 2
+  SpawnInterval: 0.1
+  MaxSpawnCount: 1000
+  EnemyCountPerSpawn: 1
 --- !u!4 &1767387412
 Transform:
   m_ObjectHideFlags: 0
